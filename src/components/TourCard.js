@@ -34,20 +34,17 @@ const theme = createTheme({
     },
   },
 });
-const TourCard = () => {
-  const [stars, setStars] = useState(4.5);
+const TourCard = (tour) => {
+  const currentTour = tour.tour;
+  const [stars, setStars] = useState(currentTour.rating);
   return (
     <Grid size={3}>
       <ThemeProvider theme={theme}>
         <Paper elevation={15} square={false}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQmorYOw9A5WSMjVWP4GLfe0JW50BTGjR-L4nFLfI-BI1JO6r2mzrkR5iAC1T0feJaYMnjk-8Rlj1U8H_kg49jJ8uZVc91P6xYIDuCZVg"
-            alt="niagra falls"
-            className="img"
-          />
+          <img src={currentTour.image} alt={currentTour.name} className="img" />
           <Box paddingX={1}>
             <Typography component="h2" variant="subtitle1">
-              Immerse into the Falls
+              {currentTour.name}
             </Typography>
             <Box
               sx={{
@@ -57,7 +54,7 @@ const TourCard = () => {
             >
               <AccessTime sx={{ width: 12.5 }} />
               <Typography variant="body2" component="p" marginLeft={1}>
-                5 Hours
+                {currentTour.duration} Hours
               </Typography>
             </Box>
             <Box
@@ -78,7 +75,7 @@ const TourCard = () => {
                 {stars}
               </Typography>
               <Typography variant="body3" component="p" marginLeft={0.5}>
-                (655 reviews)
+                ({currentTour.numberOfReviews} reviews)
               </Typography>
             </Box>
             <Box
@@ -88,7 +85,7 @@ const TourCard = () => {
               }}
             >
               <Typography variant="h6" component="h3" marginTop={0}>
-                From C $147
+                From C {currentTour.price}
               </Typography>
             </Box>
           </Box>
