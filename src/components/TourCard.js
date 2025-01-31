@@ -34,17 +34,16 @@ const theme = createTheme({
     },
   },
 });
-const TourCard = (tour) => {
-  const currentTour = tour.tour;
-  const [stars, setStars] = useState(currentTour.rating);
+const TourCard = ({ tour }) => {
+  const [rating] = useState(tour.rating);
   return (
     <Grid size={3}>
       <ThemeProvider theme={theme}>
         <Paper elevation={15} square={false}>
-          <img src={currentTour.image} alt={currentTour.name} className="img" />
+          <img src={tour.image} alt={tour.name} className="img" />
           <Box paddingX={1}>
             <Typography component="h2" variant="subtitle1">
-              {currentTour.name}
+              {tour.name}
             </Typography>
             <Box
               sx={{
@@ -54,7 +53,7 @@ const TourCard = (tour) => {
             >
               <AccessTime sx={{ width: 12.5 }} />
               <Typography variant="body2" component="p" marginLeft={1}>
-                {currentTour.duration} Hours
+                {tour.duration} Hours
               </Typography>
             </Box>
             <Box
@@ -67,15 +66,15 @@ const TourCard = (tour) => {
               <Rating
                 name="half-rating-read"
                 size="small"
-                defaultValue={stars}
+                defaultValue={rating}
                 precision={0.5}
                 readOnly
               ></Rating>
               <Typography variant="body2" component="p" marginLeft={0.5}>
-                {stars}
+                {rating}
               </Typography>
               <Typography variant="body3" component="p" marginLeft={0.5}>
-                ({currentTour.numberOfReviews} reviews)
+                ({tour.numberOfReviews} reviews)
               </Typography>
             </Box>
             <Box
@@ -85,7 +84,7 @@ const TourCard = (tour) => {
               }}
             >
               <Typography variant="h6" component="h3" marginTop={0}>
-                From C {currentTour.price}
+                From C {tour.price}
               </Typography>
             </Box>
           </Box>
